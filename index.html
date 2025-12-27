@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt=BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo das 4 teclas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Aperte as Teclas: 1, 2, 3, 4</h1>
+        <p>Clique em "Iniciar" e pressione as teclas o máximo que puder!</p>
+
+        <div id="timer">Tempo: 30s</div>
+
+        <div class="placar">
+            <div class="tecla-box">1 <span id="count1">0</span></div>
+            <div class="tecla-box">2 <span id="count2">0</span></div>
+            <div class="tecla-box">3 <span id="count3">0</span></div>
+            <div class="tecla-box">4 <span id="count4">0</span></div>
+        </div>
+
+        <button id="btnStart" onclick="iniciarJogo()">Iniciar Jogo</button>
+        <div id="resultado"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
