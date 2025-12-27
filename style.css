@@ -1,14 +1,156 @@
-body { font-family: 'Arial', sans-serif; text-align: center; background-color: #f0f0f0; margin-top: 40px;}
-        .container { background: white; padding: 20px; border-radius: 10px; display: inline-block; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-        h1 { color: #333; }
-        
-        /* Mostrador dos contadores */
-        .placar { display: flex; gap: 20px; justify-content: center; margin: 20px 0; }
-        .tecla-box { border: 2px solid #333; padding: 10px 20px; border-radius: 5px; font-size: 20px; }
-        .tecla-box span { display: block; font-size: 30px; font-weight: bold; color: #007bff; }
-        
-        /* Botão e Timer */
-        button { padding: 10px 20px; font-size: 18px; cursor: pointer; background-color: #28a745; color: white; border: none; border-radius: 5px; }
-        button:disabled { background-color: #ccc; cursor: not-allowed; }
-        #timer { font-size: 24px; color: #d9534f; margin: 15px 0; font-weight: bold; }
-        #resultado { font-size: 22px; font-weight: bold; color: #333; margin-top: 20px; min-height: 30px;}
+/* Reset e Fonte */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #121214; /* Fundo quase preto */
+    font-family: 'Orbitron', sans-serif; /* Fonte Tech/Digital */
+    color: white;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.container {
+    text-align: center;
+    width: 100%;
+    max-width: 1000px;
+}
+
+/* --- HUD SUPERIOR (Timer) --- */
+.hud-top {
+    margin-bottom: 30px;
+}
+
+#timer {
+    font-size: 4rem;
+    font-weight: 700;
+    letter-spacing: 5px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.sub-header {
+    font-size: 1rem;
+    color: #888;
+    margin-top: 5px;
+    letter-spacing: 2px;
+}
+
+/* --- GRADE DE CARDS --- */
+.game-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 colunas fixas */
+    gap: 20px;
+    padding: 20px;
+    justify-content: center;
+}
+
+/* --- ESTILO DOS CARDS (Teclas) --- */
+.tecla-box {
+    aspect-ratio: 1 / 1; /* Mantém quadrado */
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 15px;
+    color: #1a1a1a; /* Texto escuro para contraste com fundo neon */
+    transition: transform 0.1s, box-shadow 0.1s;
+    position: relative;
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+}
+
+/* Efeito quando clica (Borda branca brilhante igual a imagem na tecla 8) */
+.tecla-box.active {
+    transform: scale(1.05);
+    outline: 4px solid white;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.4);
+    z-index: 10;
+}
+
+/* Número grande (1, 2, 3...) */
+.key-number {
+    font-size: 3.5rem;
+    font-weight: 900;
+    text-align: center;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Barra escura separadora e Placar */
+.key-score {
+    background: rgba(0, 0, 0, 0.2); /* Fundo escuro transparente */
+    padding: 8px;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 700;
+    text-align: center;
+    border-top: 3px solid rgba(0,0,0,0.1); /* Simula a linha da imagem */
+}
+
+/* --- CORES ESPECÍFICAS (Baseadas na imagem) --- */
+.color-1 { background-color: #ff4747; box-shadow: 0 0 15px #ff4747; } /* Vermelho */
+.color-2 { background-color: #4da6ff; box-shadow: 0 0 15px #4da6ff; } /* Azul */
+.color-3 { background-color: #4dff88; box-shadow: 0 0 15px #4dff88; } /* Verde */
+.color-4 { background-color: #fffb4d; box-shadow: 0 0 15px #fffb4d; } /* Amarelo */
+.color-5 { background-color: #ff66c4; box-shadow: 0 0 15px #ff66c4; } /* Rosa */
+.color-6 { background-color: #a366ff; box-shadow: 0 0 15px #a366ff; } /* Roxo */
+.color-7 { background-color: #4dffff; box-shadow: 0 0 15px #4dffff; } /* Ciano */
+.color-8 { background-color: #ffaa4d; box-shadow: 0 0 15px #ffaa4d; } /* Laranja */
+
+/* --- BOTÕES E CONTROLES --- */
+.controls {
+    margin-top: 30px;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+button {
+    background: transparent;
+    border: 2px solid #444;
+    color: #fff;
+    font-family: 'Orbitron', sans-serif;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: 0.3s;
+}
+
+button:hover {
+    border-color: white;
+    background: rgba(255,255,255,0.1);
+}
+
+#btnStart {
+    background-color: white;
+    color: black;
+    font-weight: bold;
+    border: none;
+}
+#btnStart:hover {
+    background-color: #ddd;
+    transform: scale(1.05);
+}
+
+#resultado {
+    margin-top: 20px;
+    font-size: 1.5rem;
+    color: #4dff88;
+}
+
+/* Responsividade simples para não quebrar em telas menores */
+@media (max-width: 800px) {
+    .game-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 colunas no celular */
+        gap: 10px;
+    }
+    .key-number { font-size: 2.5rem; }
+    #timer { font-size: 2.5rem; }
+}
