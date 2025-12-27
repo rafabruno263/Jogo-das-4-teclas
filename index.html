@@ -1,26 +1,62 @@
 <!DOCTYPE html>
-<html lang="pt=BR">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jogo das 4 teclas</title>
+    <title>Speed Clicker HUD</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
     <div class="container">
-        <h1>Aperte as Teclas: 1, 2, 3, 4</h1>
-        <p>Clique em "Iniciar" e pressione as teclas o máximo que puder!</p>
-
-        <div id="timer">Tempo: 30s</div>
-
-        <div class="placar">
-            <div class="tecla-box">1 <span id="count1">0</span></div>
-            <div class="tecla-box">2 <span id="count2">0</span></div>
-            <div class="tecla-box">3 <span id="count3">0</span></div>
-            <div class="tecla-box">4 <span id="count4">0</span></div>
+        <div class="hud-top">
+            <div id="timer">TEMPO: 00:30</div>
+            <div class="sub-header" id="high-score">HIGH SCORE: ---</div>
         </div>
 
-        <button id="btnStart" onclick="iniciarJogo()">Iniciar Jogo</button>
+        <div class="game-grid">
+            <div class="tecla-box color-1" id="box-1">
+                <div class="key-number">1</div>
+                <div class="key-score">Pontos: <span id="count1">0</span></div>
+            </div>
+            <div class="tecla-box color-2" id="box-2">
+                <div class="key-number">2</div>
+                <div class="key-score">Pontos: <span id="count2">0</span></div>
+            </div>
+            <div class="tecla-box color-3" id="box-3">
+                <div class="key-number">3</div>
+                <div class="key-score">Pontos: <span id="count3">0</span></div>
+            </div>
+            <div class="tecla-box color-4" id="box-4">
+                <div class="key-number">4</div>
+                <div class="key-score">Pontos: <span id="count4">0</span></div>
+            </div>
+
+            <div class="tecla-box color-5" id="box-5">
+                <div class="key-number">5</div>
+                <div class="key-score">Pontos: <span id="count5">0</span></div>
+            </div>
+            <div class="tecla-box color-6" id="box-6">
+                <div class="key-number">6</div>
+                <div class="key-score">Pontos: <span id="count6">0</span></div>
+            </div>
+            <div class="tecla-box color-7" id="box-7">
+                <div class="key-number">7</div>
+                <div class="key-score">Pontos: <span id="count7">0</span></div>
+            </div>
+            <div class="tecla-box color-8" id="box-8">
+                <div class="key-number">8</div>
+                <div class="key-score">Pontos: <span id="count8">0</span></div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button onclick="modo4Teclas()">4 Botoes</button>
+            <button onclick="iniciarJogo()" id="btnStart">COMEÇAR</button>
+            <button onclick="modo8Teclas()">8 Botoes</button>
+        </div>
+        
         <div id="resultado"></div>
     </div>
 
